@@ -3,6 +3,9 @@
 namespace Tofaha\Helper\Services;
 
 use Illuminate\Support\ServiceProvider;
+use Tofaha\Helper\Console\InstallHelperPackage;
+use Tofaha\Helper\Console\NewForm;
+use Tofaha\Helper\Console\NewModel;
 use Tofaha\Helper\Helper;
 
 class HelperServiceProvider extends ServiceProvider
@@ -41,7 +44,10 @@ class HelperServiceProvider extends ServiceProvider
             ], 'lang');*/
 
             // Registering package commands.
-            // $this->commands([]);
+            $this->commands([
+                InstallHelperPackage::class,
+                NewForm::class,
+            ]);
         }
     }
 

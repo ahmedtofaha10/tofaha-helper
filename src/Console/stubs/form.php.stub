@@ -1,0 +1,15 @@
+<?php
+
+namespace Forms;
+
+use Tofaha\Helper\Forms\BaseForm;
+
+class $![name] extends BaseForm
+{
+    public function fields()
+    {
+        return [
+            // ["name"=>"first_name","title"=>"First Name","html"=>"text"],
+        ];
+    }
+}
