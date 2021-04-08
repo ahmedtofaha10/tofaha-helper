@@ -18,7 +18,10 @@ composer require tofaha/helper
 ## Usage
 
 ``` php
-// Usage description here
+// to publish package files 
+php artisan tofaha:install
+// to create new form 
+php artisan tofaha:form
 ```
 
 ### Testing
