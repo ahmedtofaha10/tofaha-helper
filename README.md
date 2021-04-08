@@ -44,7 +44,7 @@ If you discover any security related issues, please email ahmedtofaha999@gmail.c
 
 ## Credits
 
-- [ahmedtofaha10](https://github.com/tofaha)
+- [ahmedtofaha10](https://github.com/ahmedtofaha10)
 - [All Contributors](../../contributors)
 
 ## License
