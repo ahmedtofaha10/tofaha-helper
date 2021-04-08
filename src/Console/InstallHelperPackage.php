@@ -19,7 +19,7 @@ class InstallHelperPackage extends Command
         $this->info('Publishing views... ^_^ ');
 
         $this->call('vendor:publish', [
-            '--provider' => "Tofaha\Helper\Services\TableServiceProvider",
+            '--provider' => "Tofaha\Helper\Services\HelperServiceProvider",
             '--tag' => "views"
         ]);
         $this->info('TofahaHelper Installed .. Mabrouk ya beh <3 ');
