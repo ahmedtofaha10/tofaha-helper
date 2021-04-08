@@ -1,7 +1,7 @@
 <form
     action="{{{$action}}}"
     {{$method == 'post' || $method == 'get'?'method="'.$method.'"':'method="post"'}}
-    {{$options['files'] ?'enctype="multipart/form-data"':""}}
+    {{ isset( $options['files'] ) ?'enctype="multipart/form-data"':""}}
 >
     @csrf
     @if($method != 'post' && $method != 'get')
