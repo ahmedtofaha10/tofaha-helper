@@ -27,7 +27,7 @@ class HelperServiceProvider extends ServiceProvider
 
             // Publishing the views.
             $this->publishes([
-                __DIR__.'/../../resources/views/tofaha' => resource_path('views/tofaha'),
+                __DIR__.'/../../resources/views/vendor/tofaha' => resource_path('views/tofaha'),
             ], 'views');
 
             // Publishing assets.

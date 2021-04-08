@@ -71,6 +71,6 @@ class Table
             'actions'=>$this->actions ?? [],
             'customs'=>$this->customs ?? [],
         ];
-        return view('tofaha.helper.table.simple_table',$data);
+        return view('vendor.tofaha.helper.table.simple_table',$data);
     }
 }

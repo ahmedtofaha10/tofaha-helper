@@ -5,7 +5,7 @@ namespace Tofaha\Helper;
 class Helper
 {
     public static function deleteBtn($id,$url,$btnText = 'حذف',$message = '') {
-        return view('tofaha.helper.deleteBtn',compact('id','url','btnText','message'));
+        return view('vendor.tofaha.helper.deleteBtn',compact('id','url','btnText','message'));
     }
     public static function upload($name,$default = ''){
         if (request()->hasFile($name)){
