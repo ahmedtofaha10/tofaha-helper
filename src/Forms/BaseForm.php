@@ -23,17 +23,17 @@ class BaseForm
         $this->options = $options;
     }
     protected function addString($name,$title,$default = '',$options = []){
-        array_push($this->fields,['name'=>$name,'html'=>view('vendor.tofaha.helper.form.fields.string',compact('name','title','default','options'))]);
+        array_push($this->fields,['name'=>$name,'html'=>view('vendor.tofaha.helper.form.fields.string',compact('name','title','default','options'))->render()]);
     }
     protected function addNumber($name,$title,$default = '',$options = []){
-        array_push($this->fields,['name'=>$name,'html'=>view('vendor.tofaha.helper.form.fields.number',compact('name','title','default','options'))]);
+        array_push($this->fields,['name'=>$name,'html'=>view('vendor.tofaha.helper.form.fields.number',compact('name','title','default','options'))->render()]);
     }
     protected function addHidden($name,$value){
         array_push($this->fields,['name'=>$name,'html'=>'<input type="hidden" name="'.$name.'" value="'.$value.'">']);
     }
 
     protected function setFooter($title,$class='btn btn-success'){
-        $btn = '<button class="'.$class.'" type="submit">'.$title.'</button>';
+        $this->btn = '<button class="'.$class.'" type="submit">'.$title.'</button>';
     }
     public function all($keys = []){
         $data = [
