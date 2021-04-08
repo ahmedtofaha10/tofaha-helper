@@ -6,7 +6,7 @@
         "helper"
     ],
     "homepage": "https://github.com/tofaha/helper",
-    "license": "GNU AGPLv",
+    "license": "MIT",
     "type": "library",
     "authors": [
         {
@@ -43,11 +43,11 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Tofaha\\Helper\\HelperServiceProvider",
+                "Tofaha\\Helper\\Services\\HelperServiceProvider",
                 "Tofaha\\Helper\\Services\\TableServiceProvider"
             ],
             "aliases": {
-                "Helper": "Tofaha\\Helper\\HelperFacade",
+                "Helper": "Tofaha\\Helper\\Facades\\Helper",
                 "Table": "Tofaha\\Helper\\Facades\\Table"
             }
         }
