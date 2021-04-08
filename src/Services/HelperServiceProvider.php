@@ -1,6 +1,6 @@
 <?php
 
-namespace Tofaha\Helper;
+namespace Tofaha\Helper\Services;
 
 use Illuminate\Support\ServiceProvider;
 
