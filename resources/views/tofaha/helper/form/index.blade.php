@@ -23,5 +23,7 @@
         @endisset
 
     </div>
+    <br>
+    {!! $btn !!}
 
 </form>

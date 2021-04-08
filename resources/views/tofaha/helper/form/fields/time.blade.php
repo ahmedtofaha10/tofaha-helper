@@ -7,10 +7,8 @@
     </label>
     <input
         id="field_{{$name}}"
-        type="number" name="{{$name}}"
+        type="time" name="{{$name}}"
         {{isset($options['placeholder'])?'placeholder="'.$options['placeholder'].'"':''}}
-        {{isset($options['min'])?'min="'.$options['min'].'"':''}}
-        {{isset($options['max'])?'min="'.$options['max'].'"':''}}
         {{isset($options['required'])?' required ':''}}
         {{isset($options['readonly'])?' readonly ':''}}
         value="{{old($name,$default ?? '')}}"

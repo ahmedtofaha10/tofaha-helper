@@ -28,6 +28,15 @@ class BaseForm
     protected function addNumber($name,$title,$default = '',$options = []){
         array_push($this->fields,['name'=>$name,'html'=>view('vendor.tofaha.helper.form.fields.number',compact('name','title','default','options'))->render()]);
     }
+    protected function addTime($name,$title,$default = '',$options = []){
+        array_push($this->fields,['name'=>$name,'html'=>view('vendor.tofaha.helper.form.fields.time',compact('name','title','default','options'))->render()]);
+    }
+    protected function addDate($name,$title,$default = '',$options = []){
+        array_push($this->fields,['name'=>$name,'html'=>view('vendor.tofaha.helper.form.fields.date',compact('name','title','default','options'))->render()]);
+    }
+    protected function addFile($name,$title,$options = []){
+        array_push($this->fields,['name'=>$name,'html'=>view('vendor.tofaha.helper.form.fields.file',compact('name','title','default','options'))->render()]);
+    }
     protected function addHidden($name,$value){
         array_push($this->fields,['name'=>$name,'html'=>'<input type="hidden" name="'.$name.'" value="'.$value.'">']);
     }
