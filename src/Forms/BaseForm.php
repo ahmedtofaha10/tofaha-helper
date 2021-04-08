@@ -39,10 +39,10 @@ class BaseForm
         $data = [
             'action'        =>  $this->action,
             'method'        =>  $this->method,
-            'options'       =>  $this->options,
+            'formOptions'   =>  $this->options,
             'fields'        =>  $this->fields,
             'btn'           =>  $this->btn,
-            'keys'          => $keys,
+            'keys'          =>  $keys,
         ];
         return view('vendor.tofaha.helper.form.index',$data);
     }
@@ -50,7 +50,7 @@ class BaseForm
         $data = [
             'action'        =>  $this->action,
             'method'        =>  $this->method,
-            'options'       =>  $this->options,
+            'formOptions'   =>  $this->options,
             'fields'        =>  $this->fields,
             'btn'           =>  $this->btn,
             'excepted'      =>  true,
