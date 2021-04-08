@@ -1,0 +1,55 @@
+{
+    "name": "tofaha/helper",
+    "description": "laravel devloper helper",
+    "keywords": [
+        "tofaha",
+        "helper"
+    ],
+    "homepage": "https://github.com/tofaha/helper",
+    "license": "GNU AGPLv",
+    "type": "library",
+    "authors": [
+        {
+            "name": "ahmedtofaha10",
+            "email": "ahmedtofaha999@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tofaha\\Helper\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tofaha\\Helper\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tofaha\\Helper\\HelperServiceProvider",
+                "Tofaha\\Helper\\Services\\TableServiceProvider"
+            ],
+            "aliases": {
+                "Helper": "Tofaha\\Helper\\HelperFacade",
+                "Table": "Tofaha\\Helper\\Facades\\Table"
+            }
+        }
+    }
+}
