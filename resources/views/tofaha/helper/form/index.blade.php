@@ -1,6 +1,6 @@
 <form
     action="{{{$action}}}"
-    {{($method == 'post' || $method == 'get')?'method="'.$method.'"':'method="post"'}}
+    {{($method == 'post' || $method == 'get')?'method='.$method:'method="post"'}}
     {{ isset( $formOptions['files'] ) ?'enctype="multipart/form-data"':""}}
 >
     @csrf

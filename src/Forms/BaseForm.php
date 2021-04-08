@@ -35,7 +35,7 @@ class BaseForm
         array_push($this->fields,['name'=>$name,'html'=>view('vendor.tofaha.helper.form.fields.date',compact('name','title','default','options'))->render()]);
     }
     protected function addFile($name,$title,$options = []){
-        array_push($this->fields,['name'=>$name,'html'=>view('vendor.tofaha.helper.form.fields.file',compact('name','title','default','options'))->render()]);
+        array_push($this->fields,['name'=>$name,'html'=>view('vendor.tofaha.helper.form.fields.file',compact('name','title','options'))->render()]);
     }
     protected function addHidden($name,$value){
         array_push($this->fields,['name'=>$name,'html'=>'<input type="hidden" name="'.$name.'" value="'.$value.'">']);
