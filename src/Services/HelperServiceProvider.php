@@ -3,6 +3,7 @@
 namespace Tofaha\Helper\Services;
 
 use Illuminate\Support\ServiceProvider;
+use Tofaha\Helper\Helper;
 
 class HelperServiceProvider extends ServiceProvider
 {
@@ -21,12 +22,12 @@ class HelperServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('helper.php'),
+                __DIR__ . '/../../config/config.php' => config_path('helper.php'),
             ], 'config');
 
             // Publishing the views.
             $this->publishes([
-                __DIR__.'/../resources/views/tofaha/helper' => resource_path('views/tofaha/helper'),
+                __DIR__.'/../../resources/views/tofaha' => resource_path('views/tofaha'),
             ], 'views');
 
             // Publishing assets.
@@ -50,11 +51,11 @@ class HelperServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'helper');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'helper');
 
         // Register the main class to use with the facade
         $this->app->singleton('helper', function () {
-            return new Helper;
+            return new Helper();
         });
     }
 }
