@@ -1,15 +1,19 @@
 <?php
 
-namespace Forms;
+namespace App\Forms;
 
 use Tofaha\Helper\Forms\BaseForm;
 
 class $![name] extends BaseForm
 {
-    public function fields()
+    public function init()
     {
-        return [
-            // ["name"=>"first_name","title"=>"First Name","html"=>"text"],
-        ];
+        // $this->setHeader('/users','post',['formClass'=>'row','files'=>true]) // set action to '/users' and method = post then options are optional
+        // $this->addString('bla','Bla Bla!','hi',['required'=>true,'fieldClass'=>'myField','labelClass'=>'myLabel','groupClass'=>'myGroup'])
+        // add field with name bla and title Bla Bla!
+        // and default value 'hi' **  is optional
+        // array of options **  is optional  (required,placeholder,fieldClass,labelClass,groupClass) classes by default with bootstrap4
+        // functions are [addString,addNumber,addHidden]
+
     }
 }

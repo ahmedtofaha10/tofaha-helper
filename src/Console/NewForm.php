@@ -9,7 +9,7 @@ use Illuminate\Console\GeneratorCommand;
 class NewForm extends GeneratorCommand
 {
     protected $name = 'tofaha:form';
-    protected $signature = 'tofaha:from {name}';
+    protected $signature = 'tofaha:form {name}';
     protected $description = 'Create a new form class';
 
     protected $type = 'From';
@@ -29,6 +29,7 @@ class NewForm extends GeneratorCommand
         parent::handle();
 
         $this->doOtherOperations();
+        $this->info('checkout App\Forms Directory Habibi ^_^');
     }
 
     protected function doOtherOperations()
