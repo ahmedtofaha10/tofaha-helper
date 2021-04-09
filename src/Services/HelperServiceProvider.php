@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Tofaha\Helper\Console\InstallHelperPackage;
 use Tofaha\Helper\Console\NewForm;
 use Tofaha\Helper\Console\NewModel;
+use Tofaha\Helper\Console\NewTable;
 use Tofaha\Helper\Helper;
 
 class HelperServiceProvider extends ServiceProvider
@@ -47,6 +48,7 @@ class HelperServiceProvider extends ServiceProvider
             $this->commands([
                 InstallHelperPackage::class,
                 NewForm::class,
+                NewTable::class,
             ]);
         }
     }
