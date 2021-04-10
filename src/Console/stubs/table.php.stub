@@ -3,13 +3,12 @@
 namespace App\TofahaTables;
 
 use Tofaha\Helper\TofahaTables\BaseTable;
-$![modelNameSpace]
 
 class $![name] extends BaseTable
 {
     public function query(){
         // must be query of model
-        return $![model];
+        return /*model::query()*/;
     }
     public function init(){
         // use this lovely codes and more <3

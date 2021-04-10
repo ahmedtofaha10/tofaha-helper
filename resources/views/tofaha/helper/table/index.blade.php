@@ -15,8 +15,8 @@
         @endif
         @foreach ($data as $item)
             <tr>
-                @foreach($columns as $column => $item)
-                    <td>{{array_key_exists($column,$customs)?$customs[$column]($item) : $item->$column}}</td>
+                @foreach($columns as $column => $columnData)
+                    <td>{{$item->$column}}</td>
                 @endforeach
                 @if(count($actions))
                     <td>
@@ -33,3 +33,6 @@
         @endforeach
     </tbody>
 </table>
+<div class="text-center">
+    {!! $data->links() !!}
+</div>

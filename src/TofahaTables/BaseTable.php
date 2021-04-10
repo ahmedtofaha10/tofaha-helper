@@ -5,6 +5,7 @@ namespace Tofaha\Helper\TofahaTables;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Maatwebsite\Excel\Excel;
 use Tofaha\Helper\Helper;
 
 class BaseTable
@@ -50,10 +51,12 @@ class BaseTable
     }
     protected function addCustom($name,$callback){
         $this->customs[$name] = $callback;
-        return $this;
+        $this->data = array_map(function (&$item) use ($name,$callback){
+            $item->$name = $callback($item);
+        },$this->data);
     }
     protected function addColumn($name,$title,$options = []){
-        $this->columns[$name] = ['$title'=>$title,'options'=>$options];
+        $this->columns[$name] = ['title'=>$title,'options'=>$options];
     }
     protected function render(){
         $data = [
@@ -90,6 +93,9 @@ class BaseTable
         }
         $this->data = $this->query()->paginate(10);
         return $this->render();
+    }
+    public function exportExcel(){
+        return \Maatwebsite\Excel\Facades\Excel::download(new ExcelExporter($this->data),$this->prefix.'_'.time().'.xlsx');
     }
 
 

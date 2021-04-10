@@ -9,7 +9,7 @@ use Illuminate\Console\GeneratorCommand;
 class NewTable extends GeneratorCommand
 {
     protected $name = 'tofaha:table';
-    protected $signature = 'tofaha:form {name} {--model=default}';
+    protected $signature = 'tofaha:table {name} ';
     protected $description = 'Create a new TofahaTable class';
 
     protected $type = 'TofahaTable';
@@ -45,13 +45,6 @@ class NewTable extends GeneratorCommand
 
         $content = file_get_contents($path);
         $content = str_replace('$![name]',$name,$content);
-        if ($model = 'default'){
-            $content = str_replace('$![model]','/*model:query()*/',$content);
-        }else{
-            $content = str_replace('$![model]',$model.':query()',$content);
-        }
-        $content = str_replace('$![modelNameSpace]','use '.$baseModel.';',$content);
-
         // Update the file content with additional data (regular expressions)
 
         file_put_contents($path, $content);
