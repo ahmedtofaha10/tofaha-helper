@@ -16,7 +16,7 @@
         @foreach ($data as $item)
             <tr>
                 @foreach($columns as $column => $columnData)
-                    <td>{{$item->$column}}</td>
+                    <td>{{array_key_exists($column,$customs)?$customs[$column]($item) : $item->$column}}</td>
                 @endforeach
                 @if(count($actions))
                     <td>

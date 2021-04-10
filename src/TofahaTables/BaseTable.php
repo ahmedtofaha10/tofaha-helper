@@ -51,9 +51,6 @@ class BaseTable
     }
     protected function addCustom($name,$callback){
         $this->customs[$name] = $callback;
-        $this->data = array_map(function (&$item) use ($name,$callback){
-            $item->$name = $callback($item);
-        },$this->data);
     }
     protected function addColumn($name,$title,$options = []){
         $this->columns[$name] = ['title'=>$title,'options'=>$options];
@@ -95,8 +92,8 @@ class BaseTable
         return $this->render();
     }
     public function exportExcel(){
-        return \Maatwebsite\Excel\Facades\Excel::download(new ExcelExporter($this->data),$this->prefix.'_'.time().'.xlsx');
-    }
+        $data  =$this->query()->get();
+        return \Maatwebsite\Excel\Facades\Excel::download(new ExcelExporter($data),$this->prefix.'_'.time().'.xlsx');    }
 
 
 }
