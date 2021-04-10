@@ -35,8 +35,6 @@ class NewTable extends GeneratorCommand
     protected function doOtherOperations()
     {
         $name = $this->argument('name');
-        $model = $this->option('model');
-        $baseModel = class_basename($model);
         // Get the fully qualified class name (FQN)
         $class = $this->qualifyClass($this->getNameInput());
 
