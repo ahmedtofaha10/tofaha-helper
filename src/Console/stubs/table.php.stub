@@ -13,6 +13,8 @@ class $![name] extends BaseTable
     public function init(){
         // use this lovely codes and more <3
         //$this->prefix ='myTable';
+        //$this->excel = false;
+        //$this->exportExcelLink = '#';
         //$this->addColumn('name','Name');
         //$this->addAction('name',function($d){ return '<btn>Hello</btn>';});
         //$this->addAction('edit');

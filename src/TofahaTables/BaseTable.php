@@ -14,8 +14,12 @@ class BaseTable
     protected $columns;
     protected $data;
     protected $actions;
-    protected $customs;
+    protected $customs = [];
     protected $tableClass;
+    protected $excel = false;
+    protected $exportExcelLink;
+    protected $pagination = 10;
+
     public function __construct($prefix = 'table')
     {
         $this->prefix = $prefix;
@@ -56,11 +60,17 @@ class BaseTable
         $this->columns[$name] = ['title'=>$title,'options'=>$options];
     }
     protected function render(){
+        if (request()->has('pagination'))
+            $this->pagination = request('pagination');
+        $this->data = $this->query()->paginate($this->pagination);
         $data = [
             'prefix'=>$this->prefix,
             'tableClass'=>$this->tableClass,
             'columns'=>$this->columns,
             'data'=>$this->data,
+            'excel'=>$this->excel,
+            'pagination'=>$this->pagination,
+            'exportExcelLink'=>$this->exportExcelLink,
             'actions'=>$this->actions ?? [],
             'customs'=>$this->customs ?? [],
         ];
@@ -68,7 +78,6 @@ class BaseTable
     }
     public function all(){
         $this->init();
-        $this->data = $this->query()->paginate(10);
         return $this->render();
     }
     public function except($keys = []){
@@ -78,7 +87,6 @@ class BaseTable
                 unset($this->columns[$column]);
             }
         }
-        $this->data = $this->query()->paginate(10);
         return $this->render();
     }
     public function only($keys = []){
@@ -88,12 +96,26 @@ class BaseTable
                 unset($this->columns[$column]);
             }
         }
-        $this->data = $this->query()->paginate(10);
         return $this->render();
     }
     public function exportExcel(){
+        $this->init();
+        $temp = [[]];
+        foreach($this->columns as $name => $item)
+            array_push( $temp[0],$item["title"]);
         $data  =$this->query()->get();
-        return \Maatwebsite\Excel\Facades\Excel::download(new ExcelExporter($data),$this->prefix.'_'.time().'.xlsx');    }
+        $data = $data->all();
+        foreach($data as $index => &$item){
+            foreach($this->customs as $name => $fnc)
+                $item->$name = $fnc($item);
+            $row = new \stdClass();
+            foreach($this->columns as $name => $columnData){
+                $row->$name = $item->$name;
+            }
+            array_push( $temp,$row);
+        }
+
+        return \Maatwebsite\Excel\Facades\Excel::download(new ExcelExporter($temp),$this->prefix.'_'.time().'.xlsx');    }
 
 
 }
