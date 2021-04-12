@@ -17,12 +17,14 @@ class BaseTable
     protected $customs = [];
     protected $tableClass;
     protected $excel = false;
-    protected $exportExcelLink;
     protected $pagination = 10;
 
     public function __construct($prefix = 'table')
     {
         $this->prefix = $prefix;
+        if (request()->has('excel')){
+            return $this->exportExcel();
+        }
     }
     protected function init(){}
     protected function query(){return Model::query();}
@@ -56,13 +58,14 @@ class BaseTable
     protected function addCustom($name,$callback){
         $this->customs[$name] = $callback;
     }
-    protected function addColumn($name,$title,$options = []){
-        $this->columns[$name] = ['title'=>$title,'options'=>$options];
+    protected function addColumn($name,$title,$options = [],$default='لم يحدد'){
+        $this->columns[$name] = ['title'=>$title,'options'=>$options,'default'=>$default];
     }
     protected function render(){
+//        dd(request()->all());
         if (request()->has('pagination'))
             $this->pagination = request('pagination');
-        $this->data = $this->query()->paginate($this->pagination);
+        $this->data = $this->query()->paginate($this->pagination)->appends(request()->all());
         $data = [
             'prefix'=>$this->prefix,
             'tableClass'=>$this->tableClass,
@@ -70,7 +73,6 @@ class BaseTable
             'data'=>$this->data,
             'excel'=>$this->excel,
             'pagination'=>$this->pagination,
-            'exportExcelLink'=>$this->exportExcelLink,
             'actions'=>$this->actions ?? [],
             'customs'=>$this->customs ?? [],
         ];

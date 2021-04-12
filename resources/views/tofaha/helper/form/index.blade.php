@@ -1,7 +1,7 @@
 <form
     action="{{{$action}}}"
     {{($method == 'post' || $method == 'get')?'method='.$method:'method="post"'}}
-    {{ isset( $formOptions['files'] ) ?'enctype="multipart/form-data"':""}}
+    {{ isset( $formOptions['files'] ) ?'enctype=multipart/form-data':""}}
 >
     @csrf
     @if($method != 'post' && $method != 'get')
@@ -11,7 +11,7 @@
         @isset($excepted)
             @foreach($fields as $field)
                 @if(! in_array($field["name"],$keys))
-                {!! $field["html"] !!}
+                    {!! $field["html"] !!}
                 @endif
             @endforeach
         @else
