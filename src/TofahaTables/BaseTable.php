@@ -16,8 +16,8 @@ class BaseTable
     protected $actions;
     protected $customs = [];
     protected $tableClass;
-    protected $excel = false;
-    protected $print = false;
+    public $excel = false;
+    public $print = false;
     protected $pagination = 10;
 
     public function __construct($prefix = 'table')
