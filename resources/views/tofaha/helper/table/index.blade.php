@@ -21,10 +21,10 @@
                 </form>
             </div>
             @if($excel)
-                <a href="{{url(\Illuminate\Support\Facades\URL::full())}}?excel=true" class="btn green col-md-1">تصدير اكسل</a>
+                <a href="{{url(\Illuminate\Support\Facades\URL::full())}}?excel=true" class="btn green m-1 col-md-1">تصدير اكسل</a>
             @endif
             @if($print)
-                <a href="{{url(\Illuminate\Support\Facades\URL::full())}}?print=true" target="_blank" class="btn green col-md-1">طباعة</a>
+                <a href="{{url(\Illuminate\Support\Facades\URL::full())}}?print=true" target="_blank" class="btn blue m-1 col-md-1">طباعة</a>
             @endif
         </div>
     </div>

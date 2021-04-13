@@ -1,4 +1,12 @@
-<div class="portlet">
+<style>
+    table, th, td {
+        border: 1px solid darkblue;
+    }
+    .portlet{
+        direction: rtl;
+    }
+</style>
+<div class="portlet" >
     <div class="portlet-body">
         <table border="1px" style="width: 100%;">
             <thead style="background-color: #0c203a;color: white;" >

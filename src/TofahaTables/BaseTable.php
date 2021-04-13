@@ -76,6 +76,7 @@ class BaseTable
             'columns'=>$this->columns,
             'data'=>$this->data,
             'excel'=>$this->excel,
+            'print'=>$this->print,
             'pagination'=>$this->pagination,
             'actions'=>$this->actions ?? [],
             'customs'=>$this->customs ?? [],
