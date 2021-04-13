@@ -14,6 +14,7 @@ class $![name] extends BaseTable
         // use this lovely codes and more <3
         //$this->prefix ='myTable';
         //$this->excel = false;
+        //$this->print = false;
         //$this->addColumn('name','Name',[],'default name');
         //$this->addAction('name',function($d){ return '<btn>Hello</btn>';});
         //$this->addAction('edit');

@@ -17,6 +17,7 @@ class BaseTable
     protected $customs = [];
     protected $tableClass;
     protected $excel = false;
+    protected $print = false;
     protected $pagination = 10;
 
     public function __construct($prefix = 'table')
@@ -24,6 +25,9 @@ class BaseTable
         $this->prefix = $prefix;
         if (request()->has('excel')){
             return $this->exportExcel();
+        }
+        if (request()->has('print')){
+            return $this->printTable();
         }
     }
     protected function init(){}
@@ -117,7 +121,20 @@ class BaseTable
             array_push( $temp,$row);
         }
 
-        return \Maatwebsite\Excel\Facades\Excel::download(new ExcelExporter($temp),$this->prefix.'_'.time().'.xlsx');    }
+        return \Maatwebsite\Excel\Facades\Excel::download(new ExcelExporter($temp),$this->prefix.'_'.time().'.xlsx');
+    }
+    public function printTable(){
+        $this->init();
+        $data  =$this->query()->get();
+        $data = $data->all();
+        $viewData = [
+            'prefix'=>$this->prefix,
+            'columns'=>$this->columns,
+            'data'=>$data,
+            'customs'=>$this->customs ?? [],
+        ];
+        return view('vendor.tofaha.helper.table.print',$viewData);
+    }
 
 
 }
