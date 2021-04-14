@@ -67,9 +67,22 @@ class BaseTable
     }
     protected function render(){
 //        dd(request()->all());
+        $query = $this->query();
+        if (request()->has('search')){
+            foreach($this->columns as $key => $column){
+                if (empty($this->customs[$key]))
+                    $query =  $query->orWhere($key, 'LIKE', '%' . request('search') . '%');
+            }
+        }
         if (request()->has('pagination'))
             $this->pagination = request('pagination');
-        $this->data = $this->query()->paginate($this->pagination)->appends(request()->all());
+
+        if (request()->has('orderBy')){
+            $this->data = $query->orderBy(request('orderBy'),request('orderAs'))->paginate($this->pagination)->appends(request()->all());
+        }else{
+            $this->data = $query->paginate($this->pagination)->appends(request()->all());
+        }
+
         $data = [
             'prefix'=>$this->prefix,
             'tableClass'=>$this->tableClass,

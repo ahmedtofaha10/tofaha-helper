@@ -8,7 +8,7 @@
 </style>
 <div class="portlet" >
     <div class="portlet-body">
-        <table border="1px" style="width: 100%;">
+        <table border="1px" style="width: 100%;text-align: center;">
             <thead style="background-color: #0c203a;color: white;" >
             <tr>
                 @foreach($columns as $column)
