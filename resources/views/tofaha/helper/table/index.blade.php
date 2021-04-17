@@ -24,13 +24,13 @@
             </div>
             <div class="col-md-1 text-center ">
                 @if($excel)
-                    <a href="{{url(\Illuminate\Support\Facades\URL::full())}}?excel=true" class="  btn green m-1 col-md-12">تصدير اكسل</a>
+                    <a href="{{url(\Illuminate\Support\Facades\URL::full())}}{{count(request()->all()) ?"&excel=true":"?excel=true"}}" class="  btn green m-1 col-md-12">تصدير اكسل</a>
                 @endif
             </div>
             <div class="col-md-1 text-center ">
 
                 @if($print)
-                    <a href="{{url(\Illuminate\Support\Facades\URL::full())}}?print=true" target="_blank" class="  btn blue m-1 col-md-12">طباعة</a>
+                    <a href="{{url(\Illuminate\Support\Facades\URL::full())}}{{count(request()->all()) ?"&print=true":"?print=true"}}" target="_blank" class="  btn blue m-1 col-md-12">طباعة</a>
                 @endif
             </div>
             <div class="col-md-5 text-center ">
