@@ -1,3 +1,30 @@
+<div class="row">
+    @foreach($filters as $filter)
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+            <div class="dashboard-stat2 bordered"
+                 style="
+         background-image: linear-gradient(45deg, #2079a1 , #73aec8);margin: 5px;padding: 5px;
+         padding: 0px 12px 1px !important;
+         border-radius: 12px;">
+                <a href="?{{request()->has('pagination')?"pagination=".request('pagination')."&":""}}{{request()->has('search')?"search=".request('search')."&":""}}{{request()->has('orderBy')?"orderBy=".request('orderBy')."&":""}}{{request()->has('orderAs')?"orderAs=".request('orderAs')."&":""}}tableFilter={{$filter['name']}}" style="color: #FFF">
+                    <div class="display">
+                        <div class="number">
+                            <h3 class="">
+                                <span>{!!  $filter['counter'] !!}</span>
+                            </h3>
+                            <small style="color: #FFF">{{$filter['title']}}</small>
+
+                        </div>
+
+                        <div class="icon">
+                            <i style="color:#ffffff;" class="fa fa-table"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    @endforeach
+</div>
 <div class="portlet">
     <div class="heading">
         <div class=" row p-2">

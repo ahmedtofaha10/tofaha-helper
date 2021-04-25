@@ -15,6 +15,7 @@ class BaseTable
     protected $data;
     protected $actions;
     protected $customs = [];
+    protected $filters = [];
     protected $tableClass;
     public $excel = false;
     public $print = false;
@@ -65,9 +66,17 @@ class BaseTable
     protected function addColumn($name,$title,$options = [],$default='لم يحدد'){
         $this->columns[$name] = ['title'=>$title,'options'=>$options,'default'=>$default];
     }
+    public function addFilter($name,$title,$counter,$callback){
+        $this->filters[$name] = compact('name','title','counter','callback');
+    }
     protected function render(){
-//        dd(request()->all());
         $query = $this->query();
+        if (request()->has('tableFilter')){
+            if ($this->filters[request('tableFilter')] != null){
+                $temp = $this->filters[request('tableFilter')]['callback'];
+                $query = $query->$temp;
+            }
+        }
         if (request()->has('search')){
             foreach($this->columns as $key => $column){
                 if (empty($this->customs[$key]))
@@ -87,6 +96,7 @@ class BaseTable
             'prefix'=>$this->prefix,
             'tableClass'=>$this->tableClass,
             'columns'=>$this->columns,
+            'filters'=>$this->filters,
             'data'=>$this->data,
             'excel'=>$this->excel,
             'print'=>$this->print,
