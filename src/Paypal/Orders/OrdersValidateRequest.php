@@ -9,7 +9,7 @@
 
 namespace Tofaha\Helper\Paypal\Orders;
 
-use PayPalHttp\HttpRequest;
+use Tofaha\Helper\PayPalHttp\HttpRequest;
 
 class OrdersValidateRequest extends HttpRequest
 {

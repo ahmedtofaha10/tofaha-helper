@@ -2,7 +2,7 @@
 
 namespace Tofaha\Helper\Paypal\Core;
 
-use PayPalHttp\HttpRequest;
+use Tofaha\Helper\PayPalHttp\HttpRequest;
 
 class AccessTokenRequest extends HttpRequest
 {

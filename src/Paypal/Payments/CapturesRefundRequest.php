@@ -9,7 +9,7 @@
 
 namespace Tofaha\Helper\Paypal\Payments;
 
-use PayPalHttp\HttpRequest;
+use Tofaha\Helper\PayPalHttp\HttpRequest;
 
 class CapturesRefundRequest extends HttpRequest
 {

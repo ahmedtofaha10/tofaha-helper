@@ -2,9 +2,9 @@
 
 namespace Tofaha\Helper\Paypal\Core;
 
-use PayPalHttp\HttpRequest;
-use PayPalHttp\Injector;
-use PayPalHttp\HttpClient;
+use Tofaha\Helper\PayPalHttp\HttpRequest;
+use Tofaha\Helper\PayPalHttp\Injector;
+use Tofaha\Helper\PayPalHttp\HttpClient;
 
 class AuthorizationInjector implements Injector
 {

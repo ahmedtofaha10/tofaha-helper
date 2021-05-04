@@ -2,7 +2,7 @@
 
 namespace Tofaha\Helper\Paypal\Core;
 
-use PayPalHttp\Environment;
+use Tofaha\Helper\PayPalHttp\Environment;
 
 abstract class PayPalEnvironment implements Environment
 {

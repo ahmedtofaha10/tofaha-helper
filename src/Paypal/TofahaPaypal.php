@@ -46,7 +46,7 @@ class TofahaPaypal
             $response = $client->execute($request);
             dd($response);
         }catch (HttpException $ex) {
-            echo $ex->statusCode;
+            echo $ex->getStatusCode();
             print_r($ex->getMessage());
         }
     }

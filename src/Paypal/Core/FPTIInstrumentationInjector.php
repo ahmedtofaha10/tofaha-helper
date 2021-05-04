@@ -2,7 +2,7 @@
 
 namespace Tofaha\Helper\Paypal\Core;
 
-use PayPalHttp\Injector;
+use Tofaha\Helper\PayPalHttp\Injector;
 
 class FPTIInstrumentationInjector implements Injector
 {
