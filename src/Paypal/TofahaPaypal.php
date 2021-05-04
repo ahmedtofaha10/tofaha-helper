@@ -22,7 +22,7 @@ class TofahaPaypal
         $this->client_secret = $client_secret;
         return $this;
     }
-    public  function create(){
+    public function execute($order){
         $environment = new SandboxEnvironment($this->client_id,$this->client_secret);
         $client = new PayPalHttpClient($environment);
         $request = new OrdersCreateRequest();
