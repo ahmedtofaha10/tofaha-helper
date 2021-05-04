@@ -74,7 +74,7 @@ class BaseTable
         if (request()->has('tableFilter')){
             if ($this->filters[request('tableFilter')] != null){
                 $temp = $this->filters[request('tableFilter')]['callback'];
-                $query = $query->$temp;
+                $query = $query->where($temp);
             }
         }
         if (request()->has('search')){

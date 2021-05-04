@@ -1,12 +1,13 @@
+@php($req = (request()->has('pagination')?"&pagination=".request('pagination'):"").(request()->has('search')?"&search=".request('search'):"").(request()->has('orderBy')?"&orderBy=".request('orderBy'):"").(request()->has('orderAs')?"&orderAs=".request('orderAs'):"").(request()->has('tableFilter')?"&tableFilter=".request('tableFilter'):""))
 <div class="row">
     @foreach($filters as $filter)
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
             <div class="dashboard-stat2 bordered"
                  style="
          background-image: linear-gradient(45deg, #2079a1 , #73aec8);margin: 5px;padding: 5px;
-         padding: 0px 12px 1px !important;
+         padding: 5px 12px 1px !important;
          border-radius: 12px;">
-                <a href="?{{request()->has('pagination')?"pagination=".request('pagination')."&":""}}{{request()->has('search')?"search=".request('search')."&":""}}{{request()->has('orderBy')?"orderBy=".request('orderBy')."&":""}}{{request()->has('orderAs')?"orderAs=".request('orderAs')."&":""}}tableFilter={{$filter['name']}}" style="color: #FFF">
+                <a href="?tableFilter={{$filter['name']}}{{$req}}" style="color: #FFF">
                     <div class="display">
                         <div class="number">
                             <h3 class="">
@@ -14,10 +15,6 @@
                             </h3>
                             <small style="color: #FFF">{{$filter['title']}}</small>
 
-                        </div>
-
-                        <div class="icon">
-                            <i style="color:#ffffff;" class="fa fa-table"></i>
                         </div>
                     </div>
                 </a>
@@ -88,7 +85,7 @@
                         @if(! empty($customs[$key]))
                             {{$column['title']}}
                         @else
-                            <a href="?{{request()->has('pagination')?"pagination=".request('pagination')."&":""}}{{request()->has('search')?"search=".request('search')."&":""}}orderBy={{$key}}&orderAs={{request()->has('orderBy') && request('orderAs') == 'asc' ?"desc":"asc"}}" style="color: white;display: block;width: 100%;height: 100%;">
+                            <a href="?{{request()->has('pagination')?"pagination=".request('pagination')."&":""}}{{request()->has('tableFilter')?"tableFilter=".request('tableFilter')."&":""}}{{request()->has('search')?"search=".request('search')."&":""}}orderBy={{$key}}&orderAs={{request()->has('orderBy') && request('orderAs') == 'asc' ?"desc":"asc"}}" style="color: white;display: block;width: 100%;height: 100%;">
                                 {{$column['title']}}
                                 @if(request()->has('orderBy') && request('orderBy') == $key)
                                     <i class="fa fa-arrow-up" style="color: {{request('orderAs') == 'asc' ?"rgba(245,245,245,0.25)":"white"}};"></i>
