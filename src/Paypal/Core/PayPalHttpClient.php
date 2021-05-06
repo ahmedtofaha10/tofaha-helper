@@ -2,7 +2,8 @@
 
 namespace Tofaha\Helper\Paypal\Core;
 
-use Symfony\Contracts\HttpClient;
+use Tofaha\Helper\PayPalHttp\HttpClient;
+
 class PayPalHttpClient extends HttpClient
 {
     private $refreshToken;
