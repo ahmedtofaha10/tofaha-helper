@@ -77,10 +77,11 @@ class BaseTable
                 $query = $query->where($temp);
             }
         }
-        if (request()->has('search')){
+        if (request()->has('search') and request('search')){
             foreach($this->columns as $key => $column){
-                if (empty($this->customs[$key]))
-                    $query =  $query->orWhere($key, 'LIKE', '%' . request('search') . '%');
+                if ( !isset($this->customs[$key])){
+                    $query->where($key, 'LIKE', '%' . request('search') . '%','and');
+                }
             }
         }
         if (request()->has('pagination'))
