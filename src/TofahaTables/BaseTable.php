@@ -5,6 +5,9 @@ namespace Tofaha\Helper\TofahaTables;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Excel;
 use Tofaha\Helper\Helper;
 
@@ -77,28 +80,42 @@ class BaseTable
                 $query = $query->where($temp);
             }
         }
-        if (request()->has('search') and request('search')){
-            foreach($this->columns as $key => $column){
-                if ( !isset($this->customs[$key])){
-                    $query->where($key, 'LIKE', '%' . request('search') . '%','and');
-                }
-            }
-        }
         if (request()->has('pagination'))
             $this->pagination = request('pagination');
 
-        if (request()->has('orderBy')){
-            $this->data = $query->orderBy(request('orderBy'),request('orderAs'))->paginate($this->pagination)->appends(request()->all());
-        }else{
-            $this->data = $query->paginate($this->pagination)->appends(request()->all());
+        $firstTemp = $query->get();
+        $items = $firstTemp->map(function (&$item){
+            foreach ($this->columns as  $key => $column){
+                $item->$key = array_key_exists($key,$this->customs)?$this->customs[$key]($item):$item->$key;
+            }
+            return $item;
+        });
+
+
+        if (request()->has('search') and request('search')){
+            $items = $items->filter(function ($dd){
+                foreach($this->columns as $key => $column){
+                    $temp = str_contains($dd->$key ?? '',request('search','')) ;
+                    if ($temp)
+                        return true;
+                }
+            });
+
         }
 
+
+
+        if (request()->has('orderBy')){
+            $items = $this->paginate($items->sortBy(request('orderBy'),request('orderAs')),$this->pagination)->appends(request()->all());
+        }else{
+            $items = $this->paginate($items,$this->pagination)->appends(request()->all());
+        }
         $data = [
             'prefix'=>$this->prefix,
             'tableClass'=>$this->tableClass,
             'columns'=>$this->columns,
             'filters'=>$this->filters,
-            'data'=>$this->data,
+            'data'=>$items,
             'excel'=>$this->excel,
             'print'=>$this->print,
             'pagination'=>$this->pagination,
@@ -106,6 +123,12 @@ class BaseTable
             'customs'=>$this->customs ?? [],
         ];
         return view('vendor.tofaha.helper.table.index',$data);
+    }
+    public function paginate($items, $perPage = 15, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
     public function all(){
         $this->init();
